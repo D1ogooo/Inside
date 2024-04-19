@@ -9,9 +9,13 @@ function App() {
   const [conteudo, setConteudo] = useState<string | undefined>('')
   const validate = firstEmail && firstEmail.length && secondEmail && secondEmail.length ? true : false
 
-  const sendEmail = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
    e.preventDefault()
-   axios.post(`http://localhost:3000`,{
+   sendEmail()
+  }
+
+  const sendEmail = () => {
+   axios.post(`http://localhost:3000/email/invite`,{
     "de": `${firstEmail}`,
     "para": `${secondEmail}`,
     "conteudo": `${conteudo}`,
@@ -19,19 +23,21 @@ function App() {
    .then(() => {
     alert('Email enviado com sucesso')
    })
-   .catch(() => {
+   .catch((e) => {
+    console.log(e)
     alert('Erro, falha ao enviar email')
    })
   }
 
+
   return (
    <>
     <Container>
-     <form>
+     <form onSubmit={handleSubmit}>
       <input type="email" placeholder='Declare seu email' onChange={(e) => setFirstEmail(e.target.value)}/>
       <input type="email" placeholder='Para onde deseja enviar' onChange={(e) => setSecondEmail(e.target.value)}/>
       <input type="text" placeholder='O que deseja enviar' onChange={(e) => setConteudo(e.target.value)}/>
-      <Button state={validate} sendEmail={() => sendEmail}/>
+      <Button state={validate}/>
      </form>
     </Container>
    </>

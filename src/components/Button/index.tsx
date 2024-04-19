@@ -1,12 +1,11 @@
 interface ButtonProps {
  state: boolean;
- sendEmail: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({state, sendEmail}) => {
+export const Button: React.FC<ButtonProps> = ({state}) => {
  return (
   <>
-   <button disabled={!state} onClick={sendEmail}>
+   <button disabled={!state}>
     Enviar email
    </button>
   </>
