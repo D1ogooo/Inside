@@ -1,0 +1,8 @@
+body { 
+ background-image: url(/src/assets/1357732.png);
+ background-color: rgba(0, 0, 0, 0.6);
+ background-blend-mode: multiply;
+ background-size: cover;
+ background-attachment: fixed;
+ background-repeat: no-repeat;
+}
